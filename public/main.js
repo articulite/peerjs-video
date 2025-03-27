@@ -19,8 +19,10 @@ let renderVideo = (stream) => {
 
 // Register with the peer server
 let peer = new Peer({
-  host: '/',
-  path: '/peerjs/myapp'
+  host: window.peerConfig?.host || '/',
+  port: window.peerConfig?.port,
+  path: window.peerConfig?.path || '/peerjs/myapp',
+  secure: window.peerConfig?.secure
 });
 peer.on('open', (id) => {
   logMessage('My peer ID is: ' + id);
